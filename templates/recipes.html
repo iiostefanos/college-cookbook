@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        {% for recipe in recipes%}
+        {{recipe.category_name:}}
+        {{recipe.recipe_name}}
+        {{recipe.recipe_image}}
+        {{recipe.Serves}}
+        {{recipe.Prep Time}}
+        {{recipe.Cook Time}}
+        {{recipe.recipe_description}}
+        {{recipe.Author}}
+        {{recipe.Ingredients}}
+        {{recipe.Instructions}}
+        {% endfor %}
+    </body>
+</html>
