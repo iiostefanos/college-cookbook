@@ -14,7 +14,7 @@
     <div class="col-auto my-1">
       <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Category Name</label>
       <select id="category" name="category_name" class="custom-select mr-sm-2">
-        <option value="" disable selected>Choose category</option>
+        <option disable selected>Choose category</option>
         {% for cat in categories %}
           <option value="{{cat.category_name}}">{{cat.category_name}}</option>
         {% endfor %}

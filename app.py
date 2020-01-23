@@ -22,8 +22,10 @@ def get_recipes():
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('add_recipe.html',
-    categories=mongo.db.categories.find())
+    _categories=mongo.db.categories.find()
+    category_list = [category for category in _categories]
+    return render_template('add_recipe.html', categories = category_list)
+    
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
