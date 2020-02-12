@@ -11,16 +11,18 @@
         {{recipe.Author}}
         {{recipe.Ingredients}}
         {{recipe.Instructions}}
-        {% endfor %}
-        
-  
 <div class="recipe-header col-s3">
+  
   <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
   <a class="btn btn-info btn-small" type="submit">Done</a>
 </div>
 <div class="col-s9">
   
 </div>
+        {% endfor %}
+        
+  
+
 
 
 {% endblock %}
