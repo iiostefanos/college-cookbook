@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content %}
+
+<h3 class="text-center">Edit recipe</h3>
+<div class="row">
+<form action="{{ url_for('insert_recipe') }}" method="POST" class="col-s12">
+  <div class="row">
+  <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+      <h5>Categories</h5>
+      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Category</label>
+      <select id="category" name="category_name" class="custom-select mr-sm-2">
+        <option value="" disable selected>Choose category</option>
+        {% for cat in categories %}
+          <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+        {% endfor %}
+      </select>
+      </div>
+    </div>
+    <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Recipe name</label>
+    <input type="text" class="form-control" id="recipe_name" name="recipe_name" placeholder="Recipe name">
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Recipe Image</label>
+   <div class="custom-file">
+    <input type="text" class="custom-file-input" id="recipe_image" name="recipe_image" aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+  </div>
+    <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Serves</label>
+    <input type="text" class="form-control" id="Serves" name="Serves" placeholder="Please add">
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Prep Time</label>
+    <input type="text" class="form-control" id="Prep_Time" name="Prep_Time" placeholder="Please add">
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Cook Time</label>
+    <input type="text" class="form-control" id="Cook_Time" name="Cook_Time" placeholder="Please add">
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Recipe Description</label>
+    <textarea class="form-control" id="recipe_description" name="recipe_description" rows="3"></textarea>
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Author</label>
+    <input type="text" class="form-control" id="Author" name="Author" placeholder="Please add">
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Ingredients</label>
+    <input type="text" class="form-control" id="Ingredients" name="Ingredients" placeholder="Please add">
+  </div>
+  </div>
+  <div class="row">
+  <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Instructions</span>
+  </div>
+  <textarea class="form-control" aria-label="Instructions" name="Instructions"></textarea>
+</div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+    <button type="submit" class="btn btn-primary">Add Recipe</button>
+    </div>
+  </div>
+</form>
+
+
+
+{% endblock %}
