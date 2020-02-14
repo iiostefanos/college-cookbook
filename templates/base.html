@@ -6,6 +6,34 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
     </head>
     <body>
+        
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">College Cookbook</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+      <li class="nav-item justify-content-end">
+        <a class="nav-link" href="#">Stats</a>
+      </li>
+      <li>|</li>
+      <form class="form-inline my-2 my-lg-0 justify-content-center">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <li>|</li>
+    <ul class="navbar-nav justify-content-end mr-auto">
+      <li>
+        <a class="nav-link" href="#">Login</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
+        </header>
         <div class="container">
         <h1>Recipes!!!</h1>
         {% block content %}
