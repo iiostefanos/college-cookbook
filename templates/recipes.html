@@ -1,8 +1,21 @@
 {% extends 'base.html' %} {% block content %}
-
+<main class="container">
+        <div class="row">
+    <button id="back-to-results" class="btn btn-secondary" onclick="history.back(-1)">Back</button>
+       </div>
+<div class="container-fluid">
+<div class="row recipe-header">
+        <div class="col-sm-9">
         {% for recipe in recipes%}
+        <h5>Category</h5>
         {{recipe.category_name}}
+        </div>
+        <div class="row">
+       <div class="col col-sm-4">
+        <h5>Title</h5>
         {{recipe.recipe_name}}
+        </div>
+        </div>
         {{recipe.recipe_image}}
         {{recipe.Serves}}
         {{recipe.Prep_Time}}
@@ -11,10 +24,14 @@
         {{recipe.Author}}
         {{recipe.Ingredients}}
         {{recipe.Instructions}}
-<div class="recipe-header col-s3">
+        
+        </div>
+<div class="recipe-header col-sm-9">
   
   <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
-  <a class="btn btn-info btn-small" type="submit">Delete</a>
+  <form action="/delete_recipe/{{recipe._id}}" method="POST" class="col-s12">
+  <button class="btn btn-info btn-small" type="submit">Delete</button>
+  </form>
 </div>
 <div class="col-s9">
   
