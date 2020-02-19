@@ -23,6 +23,11 @@ body {
   margin-top: 4px;
 }
 
+.videoframe {
+  width:560px;
+  height:315px;
+}
+
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
