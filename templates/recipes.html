@@ -1,44 +1,53 @@
 {% extends 'base.html' %} {% block content %}
 <main class="container">
-        <div class="row">
-    <button id="back-to-results" class="btn btn-secondary" onclick="history.back(-1)">Back</button>
-       </div>
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-</div>
-       
-       <!-- Button to open the modal -->
-<button onclick="document.getElementById('id02').style.display='block'">Sign Up</button>
-
-<div class="card-deck">
-  <div class="card bg-primary">
-    <div class="card-body text-center">
-      <p class="card-text"><i class="fas fa-camera fa-xs"></i>Some text inside the first card</p>
-    </div>
-  </div>
-  <div class="card bg-warning">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the second card</p>
-    </div>
-  </div>
-  <div class="card bg-success">
-    <div class="card-body text-center">
-      <p class="card-text">Some text inside the third card</p>
-    </div>
-  </div>
-  <div class="container">
-  <h2>Card Image</h2>
-  <p>Image at the top (card-img-top):</p>
-  <div class="card" style="width:400px">
-    <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
-    <div class="card-body">
-      <h4 class="card-title">John Doe</h4>
-      <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-      <a href="#" class="btn btn-primary">See Profile</a>
-    </div>
-  </div>
   <br>
+<br>      
+<div class="container">
+  <div class="row">
+    <div class="embed-responsive embed-responsive-16by9 col-lg-6">
+  
+  <iframe class="embed-responsive-item videoframe" src="https://www.youtube.com/embed/JjHHWbmtqfM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="row col-lg-6 ">
+      <div class="text-center invite">
+        <h6>You are more than welcome to check our recipes and prepare them. Feel free to search through the recipes from 6 different categories</h6>
+        <h5>Thinking to share a recipe with all of us ?!?</h5>
+      <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete your recipe.</p>
+      <p>In order to do that, first you'll have to signup</p>
+       <!-- Button to open the modal -->
+      <button type="button" class="btn btn-primary" href='#register'><i class="fa fa-user-plus" aria-hidden="true"></i>
 
+Signup </button>
+      
+      </div>
+    </div>
+    
+  </div>
+</div>
+<br>
+<div class="card-group">
+  <div class="card">
+    <img src="https://www.foodmatters.com/media/uploads/images/recipes/my-go-to-green-smoothie.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Smoothie</h5>
+      <a href="#" class="btn btn-primary">How To</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/strawberry_smoothie.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+     <h5 class="card-title">Smoothie</h5>
+      <a href="#" class="btn btn-primary">How To</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.inspiredtaste.net/wp-content/uploads/2016/06/Banana-Smoothie-Recipe-4-1200.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Smoothie</h5>
+      <a href="#" class="btn btn-primary">How To</a>
+    </div>
+  </div>
+</div>
 <div class="container-fluid">
 <div class="row recipe-header">
         <div class="col-sm-9">
@@ -63,7 +72,7 @@
         
         </div>
 <div class="recipe-header col-sm-9">
-  <i class="fas fa-camera fa-10x"></i>
+  <i class="fa fa-camera fa-10x"></i>
   
   <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
   <form action="/delete_recipe/{{recipe._id}}" method="POST" class="col-s12">
