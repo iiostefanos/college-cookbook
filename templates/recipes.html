@@ -13,7 +13,7 @@
 <div class="card-deck">
   <div class="card bg-primary">
     <div class="card-body text-center">
-      <p class="card-text">Some text inside the first card</p>
+      <p class="card-text"><i class="fas fa-camera fa-xs"></i>Some text inside the first card</p>
     </div>
   </div>
   <div class="card bg-warning">
@@ -63,6 +63,7 @@
         
         </div>
 <div class="recipe-header col-sm-9">
+  <i class="fas fa-camera fa-10x"></i>
   
   <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
   <form action="/delete_recipe/{{recipe._id}}" method="POST" class="col-s12">

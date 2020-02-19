@@ -4,11 +4,11 @@
         
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!--Font Awesome-->
-        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+        <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css">
+        <script src="https://use.fontawesome.com/0931d022e8.js"></script>
     </head>
     <body>
         
@@ -55,7 +55,7 @@
     </div>
 
     <div class="container">
-      <label for="uname"><b><i class="far fa-user"></i>Username</b></label>
+      <label for="uname"><b><i class="fa fa-user"></i> Username </b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
       <label for="psw"><b>Password</b></label>
@@ -75,6 +75,7 @@
     </div>
   </form>
 </div>
+<i class="fa fa-camera fa-xs"></i>
 
 <!-- The Modal (contains the Sign Up form) -->
 <div id="id02" class="modal2">
@@ -105,7 +106,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#id02">
-  Login2
+  <i class="fa fa-camera fa-10x"></i>Login2
 </button>
 <div class="container">
   <div class="row">
@@ -122,6 +123,9 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
+     
+
         <script>
 // Get the modal
 var modal = document.getElementById('id01');
