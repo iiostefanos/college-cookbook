@@ -42,6 +42,11 @@ width: 350px;
   padding-top: 24px;
 }
 
+.charts {
+  width: 720px;
+  height: 360px;
+}
+
 /****** LOGIN MODAL ******/
 .loginmodal-container {
   padding: 30px;
