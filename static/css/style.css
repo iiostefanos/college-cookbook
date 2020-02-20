@@ -26,6 +26,7 @@ body {
 .videoframe {
   width:560px;
   height:315px;
+  padding-right: 34px;
 }
 
 .card {
@@ -43,232 +44,22 @@ width: 350px;
 }
 
 .charts {
-  width: 720px;
-  height: 360px;
+  width: 700px;
+  height: 350px;
 }
 
-/****** LOGIN MODAL ******/
-.loginmodal-container {
-  padding: 30px;
-  max-width: 350px;
-  width: 100% !important;
-  background-color: #F7F7F7;
-  margin: 0 auto;
-  border-radius: 2px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+.container {
+  margin-top: 2%;
+  padding-bottom: 4px;
+}
+.inner {
   overflow: hidden;
-  font-family: roboto;
 }
 
-.loginmodal-container h1 {
-  text-align: center;
-  font-size: 1.8em;
-  font-family: roboto;
+.inner img{
+  transition: all 1.5s ease;
 }
 
-.loginmodal-container input[type=submit] {
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-.loginmodal-container input[type=text], input[type=password] {
-  height: 44px;
-  font-size: 16px;
-  width: 100%;
-  margin-bottom: 10px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 8px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.loginmodal-container input[type=text]:hover, input[type=password]:hover {
-  border: 1px solid #b9b9b9;
-  border-top: 1px solid #a0a0a0;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.loginmodal {
-  text-align: center;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  font-weight: 700;
-  height: 36px;
-  padding: 0 8px;
-/* border-radius: 3px; */
-/* -webkit-user-select: none;
-  user-select: none; */
-}
-
-.loginmodal-submit {
-  /* border: 1px solid #3079ed; */
-  border: 0px;
-  color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #4d90fe;
-  padding: 17px 0px;
-  font-family: roboto;
-  font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-}
-
-.loginmodal-submit:hover {
-  /* border: 1px solid #2f5bb7; */
-  border: 0px;
-  text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
-
-.loginmodal-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
-} 
-
-.login-help{
-  font-size: 12px;
-}
-
-.login-btn {
-  text-align:center;
-  margin-top: 50px;
-}
-
-.button {
-  line-height: 55px;
-  padding: 0 30px;
-  background: #004a80;
-  color: #fff;
-  display: inline-block;
-  font-family: roboto;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.button:hover,
-.button:visited {
-  background: #006cba;
-  color: #fff;
-}
-
-#section-two{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#section-two .login-modal{
-  background-color: #F2F2F2;
-  width: 450px;
-  height: 700px;
-  margin: 60px 30px;
-  -webkit-box-shadow: 0px 0px 19px -1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 19px -1px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 19px -1px rgba(0,0,0,0.75);
-}
-
-#section-two .login-modal .close-btn a{
-  position: relative;
-  font-size: 1.5em;
-  color: #444;
-  display: none;
-}
-
-#section-two .login-modal h1{
-  text-align:center;
-  position: relative;
-  top: 30px;
-  padding-bottom: 70px;
-  color: #777;
-  font-family: Arial;
-  font-size: 1.6em;
-}
-
-#section-two .login-modal input{
-  display: block;
-  margin: 20px auto;
-  font-size: .85em;
-}
-
-#section-two .login-modal input[type="text"]{
-  border-bottom: 2px solid #ddd;
-  width: 80%;
-  padding: 15px 8px;
-}
-
-#section-two .login-modal input[type="email"]{
-  border-bottom: 2px solid #ddd;
-  width: 80%;
-  padding: 15px 8px;
-}
-
-#section-two .login-modal input[type="password"]{
-  border-bottom: 2px solid #ddd;
-  width: 80%;
-  padding: 15px 8px;
-}
-
-#section-two .login-modal a{
-  text-decoration: none;
-  float: right;
-  right: 40px;
-  position: relative;
-  font-size: 0.80em;
-  color: #0A92BF;
-}
-
-#section-two .login-modal .sign-up{
-  margin-top: 35px;
-  width: 80%;
-  padding: 15px 0;
-  border-radius: 30px;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: 600;
-  opacity: 0.9;
-  transition: ease-in-out .2s;
-  text-align: center;
-  cursor: pointer;
-  letter-spacing: 1.3px;
-  background: rgba(59,103,165,1);
-  background: -moz-linear-gradient(45deg, rgba(59,103,165,1) 0%, rgba(56,105,168,1) 5%, rgba(21,117,208,1) 29%, rgba(6,122,224,1) 39%, rgba(6,133,224,1) 62%, rgba(21,166,249,1) 100%);
-  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59,103,165,1)), color-stop(5%, rgba(56,105,168,1)), color-stop(29%, rgba(21,117,208,1)), color-stop(39%, rgba(6,122,224,1)), color-stop(62%, rgba(6,133,224,1)), color-stop(100%, rgba(21,166,249,1)));
-  background: -webkit-linear-gradient(45deg, rgba(59,103,165,1) 0%, rgba(56,105,168,1) 5%, rgba(21,117,208,1) 29%, rgba(6,122,224,1) 39%, rgba(6,133,224,1) 62%, rgba(21,166,249,1) 100%);
-  background: -o-linear-gradient(45deg, rgba(59,103,165,1) 0%, rgba(56,105,168,1) 5%, rgba(21,117,208,1) 29%, rgba(6,122,224,1) 39%, rgba(6,133,224,1) 62%, rgba(21,166,249,1) 100%);
-  background: -ms-linear-gradient(45deg, rgba(59,103,165,1) 0%, rgba(56,105,168,1) 5%, rgba(21,117,208,1) 29%, rgba(6,122,224,1) 39%, rgba(6,133,224,1) 62%, rgba(21,166,249,1) 100%);
-  background: linear-gradient(45deg, rgba(59,103,165,1) 0%, rgba(56,105,168,1) 5%, rgba(21,117,208,1) 29%, rgba(6,122,224,1) 39%, rgba(6,133,224,1) 62%, rgba(21,166,249,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b67a5', endColorstr='#15a6f9', GradientType=1 );
-}
-
-#section-two .login-modal input[type="submit"]:hover{
-  opacity: 1;
-}
-
-#section-two .login-modal input[type="checkbox"]{
-  margin: 140px 60px;
-}
-
-#section-two .login-modal p{
-  position: relative;
-  top: -156px;
-  left: 50px;
-  margin: 10px 30px;
-  font-size: 0.9em;
-  width: 300px;
-  letter-spacing: 1px;
-  color: #666;
-  line-height: 1.4em;
+.inner:hover img {
+  transform: scale(1.5);
 }
