@@ -14,11 +14,11 @@ app.config["MONGO_URI"] = os.environ["MONGO_URI"]
 mongo = PyMongo(app)
 
 @app.route('/')
-def index():
+def recipe():
     if 'username' in session:
         return 'You are logged in as ' + session['username']
 
-    return render_template('index.html')
+    return render_template('recipes.html')
 
 @app.route('/login', methods=['POST'])
 def login():
