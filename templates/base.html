@@ -38,12 +38,11 @@
 <br>
 </header>
         
+      
         
-        <div class="container">
-        <h1 class="text-center">Welcome to College Cookbook app!!!</h1>
         {% block content %}
         {% endblock %}
-        </div>
+      
       
 
 
@@ -96,7 +95,7 @@ Login </button>
         </button>
       </div>
       <div class="modal-body">
-        <form role="form" method=POST action="{{ url_for('register') }}">
+         <form role="form" method=POST action="{{ url_for('register') }}">
                       <div class="form-group">
                         <label for="user"><i class="fa fa-user" aria-hidden="true"></i>
 Username</label>
@@ -112,13 +111,14 @@ Username</label>
 Re-type Password</label>
                           <input type="password" class="form-control" placeholder="Re-type Password" required>
                       </div>
-                  </form>
+                  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"><i class="fa fa-user-plus" aria-hidden="true"></i>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus" aria-hidden="true"></i>
 
 Signup </button>
+       </form>
       </div>
     </div>
   </div>

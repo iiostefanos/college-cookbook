@@ -43,10 +43,14 @@ width: 350px;
   padding-top: 24px;
 }
 
-.charts {
-  width: 700px;
-  height: 350px;
+.charts img {
+   
+    
+    width:  400px;
+    height: 300px;
+    background-size: cover;
 }
+
 
 .container {
   margin-top: 2%;

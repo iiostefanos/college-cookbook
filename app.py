@@ -42,7 +42,7 @@ def user_auth():
 	# Check for user in database
 	if user_in_db:
 		# If passwords match (hashed / real password)
-		if check_password_hash(user_in_db['password'], form['user_password']):
+		if check_password_hash(user_in_db['password'], form['password']):
 			# Log user in (add to session)
 			session['user'] = form['username']
 			# If the user is admin redirect him to admin area
@@ -53,7 +53,7 @@ def user_auth():
 				return redirect(url_for('recipes', user=user_in_db['username']))
 			
 		else:
-			flash("Wrong password or user name!")
+			flash("Wrong password or username!")
 			return redirect(url_for('login'))
 	else:
 		flash("You need to signup !")
@@ -69,7 +69,7 @@ def register():
 	if request.method == 'POST':
 		form = request.form.to_dict()
 		# Check if the password and password1 actually match 
-		if form['user_password'] == form['user_password1']:
+		if form['password'] == form['password1']:
 			# If so try to find the user in db
 			user = users_collection.find_one({"username" : form['username']})
 			if user:
@@ -78,7 +78,7 @@ def register():
 			# If user does not exist register new user
 			else:				
 				# Hash password
-				hash_pass = generate_password_hash(form['user_password'])
+				hash_pass = generate_password_hash(form['password'])
 				#Create new user with hashed password
 				users_collection.insert_one(
 					{
