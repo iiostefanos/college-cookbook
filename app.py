@@ -9,6 +9,7 @@ if path.exists("env.py"):
     import env
 
 app = Flask(__name__)
+app.secret_key = "super secret key"
 app.config["MONGO_DBNAME"] = 'college_cookbook'
 app.config["MONGO_URI"] = os.environ["MONGO_URI"]
 
@@ -68,8 +69,8 @@ def register():
 		return redirect(url_for('recipes'))
 	if request.method == 'POST':
 		form = request.form.to_dict()
-		# Check if the password and password1 actually match 
-		if form['password'] == form['password1']:
+		# Check if the password and password actually match 
+		if form['password'] == form['password']:
 			# If so try to find the user in db
 			user = users_collection.find_one({"username" : form['username']})
 			if user:

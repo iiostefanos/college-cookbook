@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <main class="container">
   <br>
-  <h1 class="text-center"> Welcome to College Cookbook app!!! </h1>
+  <h1 class="text-center"> Welcome to College Cookbook app{% if user %}, {{ user.capitalize() }}{% endif %}!!! </h1>
       
 <div class="container">
   <div class="row">
@@ -25,6 +25,24 @@
     
   </div>
 </div>
+
+<br>
+
+<nav aria-label="...">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 <br>
 <div class="container">
    <div class="row justify-content-center">
@@ -107,6 +125,22 @@
 </div>
        </div>
    </div>
+   
+   <nav aria-label="...">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
    
 <div class="container-fluid">
 <div class="row recipe-header">
