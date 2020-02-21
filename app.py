@@ -22,16 +22,16 @@ recipes_collection = mongo.db.recipes
 # Login
 @app.route('/login', methods=['GET'])
 def login():
-	# Check if user is not logged in already
+	# Check if user is not already logged in
 	if 'user' in session:
 		user_in_db = users_collection.find_one({"username": session['user']})
 		if user_in_db:
-			# If so redirect user to his profile
+			# If so redirect user to main page
 			flash("You are logged in already!")
-			return redirect(url_for('profile', user=user_in_db['username']))
+			return redirect(url_for('recipes', user=user_in_db['username']))
 	else:
 		# Render the page for user to be able to log in
-		return render_template("login.html")
+		return render_template("recipes.html")
 
 # Check user login details from login form
 
@@ -46,11 +46,11 @@ def user_auth():
 			# Log user in (add to session)
 			session['user'] = form['username']
 			# If the user is admin redirect him to admin area
-			if session['user'] == "admin":
-				return redirect(url_for('admin'))
+			if session['user'] == "user":
+				return redirect(url_for('recipes'))
 			else:
 				flash("You were logged in!")
-				return redirect(url_for('profile', user=user_in_db['username']))
+				return redirect(url_for('recipes', user=user_in_db['username']))
 			
 		else:
 			flash("Wrong password or user name!")
@@ -114,6 +114,11 @@ def logout():
 @app.route('/get_recipes')
 def get_recipes():
     return render_template("recipes.html", 
+    recipes=mongo.db.recipes.find())
+    
+@app.route('/stats')
+def stats():
+    return render_template("stats.html", 
     recipes=mongo.db.recipes.find())
 
 
