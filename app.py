@@ -29,10 +29,10 @@ def login():
 		if user_in_db:
 			# If so redirect user to main page
 			flash("You are logged in already!")
-			return redirect(url_for('recipes', user=user_in_db['username']))
+			return redirect(url_for('get_recipes', user=user_in_db['username']))
 	else:
 		# Render the page for user to be able to log in
-		return render_template("recipes.html")
+		return render_template("get_recipes")
 
 # Check user login details from login form
 
@@ -48,17 +48,17 @@ def user_auth():
 			session['user'] = form['username']
 			# If the user is admin redirect him to admin area
 			if session['user'] == "user":
-				return redirect(url_for('recipes'))
+				return redirect(url_for('get_recipes'))
 			else:
 				flash("You were logged in!")
-				return redirect(url_for('recipes', user=user_in_db['username']))
+				return redirect(url_for('get_recipes', user=user_in_db['username']))
 			
 		else:
 			flash("Wrong password or username!")
 			return redirect(url_for('login'))
 	else:
 		flash("You need to signup !")
-		return redirect(url_for('register'))
+		return redirect(url_for('get_recipes'))
 
 # Sign up
 @app.route('/register', methods=['GET', 'POST'])
@@ -66,7 +66,7 @@ def register():
 	# Check if user is not logged in already
 	if 'user' in session:
 		flash('Already sign in!')
-		return redirect(url_for('recipes'))
+		return redirect(url_for('get_recipes'))
 	if request.method == 'POST':
 		form = request.form.to_dict()
 		# Check if the password and password actually match 
@@ -75,7 +75,7 @@ def register():
 			user = users_collection.find_one({"username" : form['username']})
 			if user:
 				flash(f"{form['username']} already exists!")
-				return redirect(url_for('register'))
+				return redirect(url_for('get_recipes'))
 			# If user does not exist register new user
 			else:				
 				# Hash password
@@ -95,13 +95,13 @@ def register():
 					return redirect(url_for('profile', user=user_in_db['username']))
 				else:
 					flash("There was a problem saving your profile")
-					return redirect(url_for('register'))
+					return redirect(url_for('get_recipes'))
 
 		else:
 			flash("Passwords don't match!")
-			return redirect(url_for('register'))
+			return redirect(url_for('get_recipes'))
 		
-	return render_template("register")
+	return render_template("recipes")
 
 # Log out
 @app.route('/logout')
