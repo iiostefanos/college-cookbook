@@ -109,13 +109,17 @@ def logout():
 	# Clear the session
 	session.clear()
 	flash('You were logged out!')
-	return redirect(url_for('recipes'))
+	return redirect(url_for('get_recipes'))
 
 @app.route('/')
 @app.route('/get_recipes')
 def get_recipes():
-    return render_template("recipes.html", 
-    recipes=mongo.db.recipes.find())
+    if 'user' in session:
+      return render_template("recipes.html", recipes=mongo.db.recipes.find(), user = session['user'])
+    else:
+      return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    
+    
     
 @app.route('/stats')
 def stats():
