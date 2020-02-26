@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <main class="container">
   <br>
-  <h1 class="text-center"> Welcome to College Cookbook app{% if user %}, {{ user.capitalize() }}{% endif %} !!! </h1>
+  <h1 class="text-center"> Welcome to College Cookbook app {% if user is defined %}, {{ user.capitalize() }} {% endif %} !!! </h1>
       
 <div class="container">
   <div class="row">
