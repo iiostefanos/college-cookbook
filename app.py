@@ -9,10 +9,10 @@ if path.exists("env.py"):
     import env
 
 app = Flask(__name__)
-app.secret_key = "super secret key"
+
 app.config["MONGO_DBNAME"] = 'college_cookbook'
 app.config["MONGO_URI"] = os.environ["MONGO_URI"]
-
+app.config['SECRET_KEY'] = os.urandom(24)
 mongo = PyMongo(app)
 
 # Collections
@@ -21,7 +21,7 @@ users_collection = mongo.db.users
 recipes_collection = mongo.db.recipes
 
 # Login
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
 	# Check if user is not already logged in
 	if 'user' in session:
@@ -112,6 +112,9 @@ def logout():
 	return redirect(url_for('get_recipes'))
 
 @app.route('/')
+def index():
+	return render_template("recipes.html", recipes=mongo.db.recipes.find())
+	
 @app.route('/get_recipes')
 def get_recipes():
     if 'user' in session:
@@ -127,23 +130,28 @@ def stats():
     recipes=mongo.db.recipes.find())
 
 
-@app.route('/add_recipe')
+@app.route('/add_recipe/<recipe_id>')
 def add_recipe():
-    categories=mongo.db.categories.find()
-    category_list = [category for category in categories]
-    return render_template('add_recipe.html', categories = category_list)
+    if 'user' in session:
+        categories=mongo.db.categories.find()
+        return render_template('add_recipe.html', categories = categories)
+    else:
+        return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
-@app.route ('/insert_recipe', methods=['POST'])
+@app.route ('/insert_recipe/<recipe_id>', methods=['POST'])
 def insert_recipe():
     recipes=mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipes'))
     
-@app.route('/edit_recipe/<recipe_id>')
+@app.route('/edit_recipe/<recipe_id>', methods=['POST'])
 def edit_recipe(recipe_id):
-    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    all_categories = mongo.db.categories.find()
-    return render_template('edit_recipe.html', recipe=the_recipe, categories=all_categories)
+    if 'user' in session:
+        the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        all_categories = mongo.db.categories.find()
+        return render_template('edit_recipe.html', recipe=the_recipe, categories=all_categories)
+    else:
+        return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
@@ -166,10 +174,13 @@ def update_recipe(recipe_id):
     )
     return redirect(url_for('get_recipes'))
     
+
 @app.route('/delete_recipe/<recipe_id>', methods=['POST'])
 def delete_recipe(recipe_id):
-      mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-      return redirect(url_for('get_recipes'))
+    if 'user' in session:
+        mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+        flash('Recipe deleted')
+    return redirect(url_for('get_recipes'))
 
     
 if __name__ == '__main__':

@@ -13,7 +13,7 @@
       <div class="text-center invite">
         <h6>You are more than welcome to check our recipes and prepare them.</h6> 
         <h6>Feel free to search through the recipes from 6 different categories</h6>
-        <h5>Thinking to share a recipe with all of us ?!?</h5>
+        <h5>Would you like to share a recipe with all of us ?!?</h5>
       <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete your recipe.</p>
       <p>Already have an account ? --> <a data-toggle="modal" data-target="#login" href="#">Login</a></p>
       <p>If not, click the button below</p>
@@ -32,12 +32,12 @@
 
 <nav aria-label="...">
   <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
+    <li class="page-item">
       <a class="page-link" href="#" tabindex="-1">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    <li class="page-item active"><a class="page-link active" href="#">1</a></li>
+    <li class="page-item ">
+      <a class="page-link" href="#">2</a>
     </li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item">
@@ -130,12 +130,12 @@
    
    <nav aria-label="...">
   <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
+    <li class="page-item">
       <a class="page-link" href="#" tabindex="-1">Previous</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    <li class="page-item active"><a class="page-link active" href="#">1</a></li>
+    <li class="page-item ">
+      <a class="page-link" href="#">2</a>
     </li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item">
@@ -143,11 +143,13 @@
     </li>
   </ul>
 </nav>
-   
+
+<br>
+
 <div class="container-fluid">
 <div class="row recipe-header">
         <div class="col-sm-9">
-        {% for recipe in recipes%}
+        {% for recipe in recipes %}
         <h5>Category</h5>
         {{recipe.category_name}}
         </div>
