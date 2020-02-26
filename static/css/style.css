@@ -67,3 +67,19 @@ width: 350px;
 .inner:hover img {
   transform: scale(1.5);
 }
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.navbar-nav.navbar-center2 {
+    position: absolute;
+    left: 25%;
+    transform: translatex(-50%);
+}
+
+.logout {
+  margin-top: 3px;
+  padding: 5px;
+}
