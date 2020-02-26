@@ -20,7 +20,51 @@ mongo = PyMongo(app)
 users_collection = mongo.db.users
 recipes_collection = mongo.db.recipes
 
-# Login
+
+# Sign up
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	# Check if user is not logged in already
+	if 'user' in session:
+		flash('Already sign in!')
+		return redirect(url_for('get_recipes'))
+	if request.method == 'POST':
+		form = request.form.to_dict()
+		# Check if the password and password actually match 
+		if form['password'] == form['password']:
+			# If so try to find the user in db
+			user = users_collection.find_one({"username" : form['username']})
+			if user:
+				flash(f"{form['username']} already exists!")
+				return redirect(url_for('get_recipes'))
+			# If user does not exist register new user
+			else:				
+				# Hash password
+				hash_pass = generate_password_hash(form['password'])
+				#Create new user with hashed password
+				users_collection.insert_one(
+					{
+						'username': form['username'],
+						'password': hash_pass
+					}
+				)
+				# Check if user is actually saved
+				user_in_db = users_collection.find_one({"username": form['username']})
+				if user_in_db:
+					# Log user in (add to session)
+					session['user'] = user_in_db['username']
+					return redirect(url_for('login', user=user_in_db['username']))
+				else:
+					flash("There was a problem with your registration")
+					return redirect(url_for('get_recipes'))
+
+		else:
+			flash('Passwords do not match! Try Again.' ,'danger')
+			return redirect(url_for('get_recipes'))
+		
+	return render_template("recipes.html")
+	
+	# Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	# Check if user is not already logged in
@@ -60,67 +104,25 @@ def user_auth():
 		flash("You need to signup !")
 		return redirect(url_for('get_recipes'))
 
-# Sign up
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-	# Check if user is not logged in already
-	if 'user' in session:
-		flash('Already sign in!')
-		return redirect(url_for('get_recipes'))
-	if request.method == 'POST':
-		form = request.form.to_dict()
-		# Check if the password and password actually match 
-		if form['password'] == form['password']:
-			# If so try to find the user in db
-			user = users_collection.find_one({"username" : form['username']})
-			if user:
-				flash(f"{form['username']} already exists!")
-				return redirect(url_for('get_recipes'))
-			# If user does not exist register new user
-			else:				
-				# Hash password
-				hash_pass = generate_password_hash(form['password'])
-				#Create new user with hashed password
-				users_collection.insert_one(
-					{
-						'username': form['username'],
-						'password': hash_pass
-					}
-				)
-				# Check if user is actually saved
-				user_in_db = users_collection.find_one({"username": form['username']})
-				if user_in_db:
-					# Log user in (add to session)
-					session['user'] = user_in_db['username']
-					return redirect(url_for('profile', user=user_in_db['username']))
-				else:
-					flash("There was a problem saving your profile")
-					return redirect(url_for('get_recipes'))
-
-		else:
-			flash("Passwords don't match!")
-			return redirect(url_for('get_recipes'))
-		
-	return render_template("recipes")
 
 # Log out
 @app.route('/logout')
-def logout():
+def logout(end_session):
 	# Clear the session
 	session.clear()
 	flash('You were logged out!')
 	return redirect(url_for('get_recipes'))
-
+"""
 @app.route('/')
 def index():
 	return render_template("recipes.html", recipes=mongo.db.recipes.find())
-	
+"""	
 @app.route('/get_recipes')
 def get_recipes():
     if 'user' in session:
       return render_template("recipes.html", recipes=mongo.db.recipes.find(), user = session['user'])
     else:
-      return render_template("recipes.html", recipes=mongo.db.recipes.find())
+      return render_template("add_recipe.html", recipes=mongo.db.recipes.find())
     
     
     

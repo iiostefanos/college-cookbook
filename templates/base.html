@@ -36,10 +36,10 @@
       <li>|</li>
          <li><a href="{{ url_for('end_session') }}">Log Out</a></li>
         {% else %}
-      <a class="nav-item nav-link"  data-toggle="modal" data-target="#login" href="#">Login</a>
+      <a class="nav-item nav-link"  data-toggle="modal" data-target="#login" href="{{url_for('get_recipes')}}">Login</a>
       {% endif %}
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{url_for('add_recipe')}}">Add a Recipe</a>
+          <a class="dropdown-item" href="{{url_for('add_recipe', recipe_id = recipe_id)}}">Add a Recipe</a>
           <a class="dropdown-item" href="{{url_for('edit_recipe', recipe_id = recipe_id)}}">Edit Recipe</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{url_for('delete_recipe', recipe_id = recipe_id)}}">Delete Recipe</a>
@@ -91,7 +91,7 @@ Password</label>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i>
 Login </button>
       </div>
     </div>

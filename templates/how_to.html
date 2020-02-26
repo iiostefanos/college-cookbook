@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="row recipe-header">
+        <div class="col-sm-9">
+            {% for recipe in recipes %}
+            <h5>Category</h5>
+            {{recipe.category_name}}
+        </div>
+        <div class="row">
+            <div class="col col-sm-4">
+                <h5>Title</h5>
+                {{recipe.recipe_name}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <img src="{{ recipe.recipe_image }}" alt="{{ recipe_image }}">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+       <h5>Serves</h5>
+        {{recipe.Serves}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+       <h5>Preparation Time</h5>
+        {{recipe.Prep_Time}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+       <h5>Cook Time</h5>
+        {{recipe.Cook_Time}}
+    </div>
+</div> 
+       
+       <div class="form-group">
+          <label class="control-label col-sm-2">
+             Description 
+          </label> 
+          <div class="col-sm-5">
+              <textarea name="description">{{recipe.recipe_description}}</textarea>
+          </div>
+       </div>
+        <div class="row">
+    <div class="col-sm-12">
+       <h5> Author</h5>
+        {{recipe.Author}}
+        </div>
+</div> 
+       <div class="form-group">
+          <label class="control-label col-sm-2">
+             Ingredients 
+          </label> 
+          <div class="col-sm-5">
+              <textarea name="description">{{recipe.Ingredients}}</textarea>
+          </div>
+       </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">
+             Instructions
+          </label> 
+          <div class="col-sm-5">
+              <textarea name="description">{{recipe.Instructions}}</textarea>
+          </div>
+       </div>
+        
