@@ -23,21 +23,6 @@ recipes_collection = mongo.db.recipes
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	# Check if user is not already logged in
-	if 'user' in session:
-		user_in_db = users_collection.find_one({"username": session['user']})
-		if user_in_db:
-			# If so redirect user to main page
-			flash("You are logged in already!")
-			return redirect(url_for('get_recipes', user=user_in_db['username']))
-	else:
-		# Render the page for user to be able to log in
-		return render_template("get_recipes")
-
-# Check user login details from login form
-
-@app.route('/user_auth', methods=['POST'])
-def user_auth():
 	form = request.form.to_dict()
 	user_in_db = users_collection.find_one({"username": form['username']})
 	# Check for user in database
@@ -59,6 +44,8 @@ def user_auth():
 	else:
 		flash("You need to signup !")
 		return redirect(url_for('get_recipes'))
+
+	
 
 # Sign up
 @app.route('/register', methods=['GET', 'POST'])
