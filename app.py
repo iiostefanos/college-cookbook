@@ -24,7 +24,7 @@ recipes_collection = mongo.db.recipes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	form = request.form.to_dict()
-	user_in_db = users_collection.find_one({"username": form['username']})
+	user_in_db = users_collection.find_one({'username': form['username']})
 	# Check for user in database
 	if user_in_db:
 		# If passwords match (hashed / real password)
@@ -56,10 +56,11 @@ def register():
 		return redirect(url_for('get_recipes'))
 	if request.method == 'POST':
 		form = request.form.to_dict()
-		# Check if the password and password actually match 
-		if form['password'] == form['password']:
+		# Check if the password and password1 actually match 
+		if form['password'] == form['password1']:
 			# If so try to find the user in db
 			user = users_collection.find_one({"username" : form['username']})
+			print(form)
 			if user:
 				flash(f"{form['username']} already exists!")
 				return redirect(url_for('get_recipes'))
