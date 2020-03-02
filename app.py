@@ -5,6 +5,7 @@ import bcrypt
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId 
 from os import path
+
 if path.exists("env.py"):
     import env
 
@@ -35,12 +36,13 @@ def login():
 			if session['user'] == "user":
 				return redirect(url_for('get_recipes'))
 			else:
-				flash("You were logged in!")
+				flash("Logged in successful!")
 				return redirect(url_for('get_recipes', user=user_in_db['username']))
 			
 		else:
 			flash("Wrong password or username!")
-			return redirect(url_for('login'))
+			flash("Try login again")
+			return redirect(url_for('get_recipes'))
 	else:
 		flash("You need to signup !")
 		return redirect(url_for('get_recipes'))

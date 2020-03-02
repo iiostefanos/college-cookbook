@@ -87,3 +87,8 @@ width: 350px;
 .user-greeting {
   margin-top: 94px;
 }
+
+footer {
+	background: #000000;
+	height: 300px;
+}
