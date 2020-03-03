@@ -1,3 +1,18 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+<div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-center">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<a class="dropdown-item" href="{{url_for('edit_recipe', recipe_id = recipe_id)}}">Edit Recipe</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{url_for('delete_recipe', recipe_id = recipe_id)}}">Delete Recipe</a></li>
+          {% endblock %}
+          
 <div class="container-fluid">
     <div class="row recipe-header">
         <div class="col-sm-9">
@@ -67,4 +82,30 @@
               <textarea name="description">{{recipe.Instructions}}</textarea>
           </div>
        </div>
+       
+       <div class="container-fluid">
+
+<div class="row recipe-header">
+        <div class="col-sm-9">
+        {% for recipe in recipes %}
+        <h5>Category</h5>
+        {{recipe.category_name}}
+        </div>
+        <div class="row">
+       <div class="col col-sm-4">
+        <h5>Title</h5>
+        {{recipe.recipe_name}}
+        </div>
+        </div>
+        <img src="{{ recipe.recipe_image }}" alt="{{ recipe.title}}">
+        {{recipe.Serves}}
+        {{recipe.Prep_Time}}
+        {{recipe.Cook_Time}}
+        {{recipe.recipe_description}}
+        {{recipe.Author}}
+        {{recipe.Ingredients}}
+        {{recipe.Instructions}}
         
+        </div>
+        
+{% endblock %}

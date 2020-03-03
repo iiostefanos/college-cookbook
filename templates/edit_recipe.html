@@ -30,9 +30,8 @@
   <div class="row">
   <div class="form-group">
     <label for="formGroupExampleInput">Recipe Image</label>
-   <div class="custom-file">
-    <input type="text" class="custom-file-input"  value="{{recipe.recipe_image}}" id="recipe_image" name="imgUrl" aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+   <div class="imgurl">
+    <input id="img_src" name="recipe_image" type="text" minlength="15" placeholder="Recipe Photo URL" pattern="https?://.+" autocomplete="off">
   </div>
   </div>
     <div class="row">
