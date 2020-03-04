@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block content %}
+
 <main class="container">
   <br>
   <h1 class="text-center"> Welcome to College Cookbook app {% if user is defined %}, {{ user.capitalize() }} {% endif %} !!! </h1>
@@ -28,7 +29,7 @@
     <div class="row col-md-6">
       <div class="user-greeting text-center">
         <h3>{{user}}, you are now logged in</h3> 
-        <h4>Feel free to add, edit or delete your recipe by using the Manage dropdown menu </h4>
+        <h4>Feel free to add, edit or delete your recipe</h4>
       </div>
     </div>
     {% else %}
@@ -71,84 +72,23 @@
 <div class="container">
    <div class="row justify-content-center">
      <div class="col-md-4">
+       
+       {% for recipe in recipes %}
+      
+
        <div class="card shadow" style="width: 20rem;">
          <div class="inner">
-  <img class="card-img-top" src="https://www.foodmatters.com/media/uploads/images/recipes/my-go-to-green-smoothie.jpg" alt="Card image cap">
+  <img class="card-img-top" src="{{ recipe.recipe_image }}" alt="Card image cap">
          </div>
   <div class="card-body text-center">
-    <h5 class="card-title">Card title</h5>
+    <h5 class="card-title">{{ recipe.recipe_name }}</h5>
     <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-    <a href="#" class="btn btn-primary">How To</a>
+    <a href="{{url_for('how_to', recipe_id = recipe._id )}}" class="btn btn-primary">How To</a>
+    {% endfor %}
   </div>
 </div>
        </div>
-       <div class="col-md-4">
-       <div class="card shadow" style="width: 20rem;">
-          <div class="inner">
-  <img class="card-img-top" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/strawberry_smoothie.jpg" alt="Card image cap">
-        </div>
-  <div class="card-body text-center">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">How To</a>
-  </div>
-</div>
-       </div>
-       <div class="col-md-4">
-       <div class="card shadow" style="width: 20rem;">
-          <div class="inner">
-  <img class="card-img-top" src="https://www.inspiredtaste.net/wp-content/uploads/2016/06/Banana-Smoothie-Recipe-4-1200.jpg" alt="Card image cap">
-          </div>
-  <div class="card-body text-center">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">How To</a>
-  </div>
-</div>
-       </div>
-   </div>
-   <br>
-   <br>
-     
-<div class="container">
-   <div class="row justify-content-center">
-     <div class="col-md-4">
-       <div class="card shadow" style="width: 20rem;">
-         <div class="inner">
-  <img class="card-img-top" src="https://www.foodmatters.com/media/uploads/images/recipes/my-go-to-green-smoothie.jpg" alt="Card image cap">
-         </div>
-  <div class="card-body text-center">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">How To</a>
-  </div>
-</div>
-       </div>
-       <div class="col-md-4">
-       <div class="card shadow" style="width: 20rem;">
-          <div class="inner">
-  <img class="card-img-top" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/strawberry_smoothie.jpg" alt="Card image cap">
-        </div>
-  <div class="card-body text-center">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">How To</a>
-  </div>
-</div>
-       </div>
-       <div class="col-md-4">
-       <div class="card shadow" style="width: 20rem;">
-          <div class="inner">
-  <img class="card-img-top" src="https://www.inspiredtaste.net/wp-content/uploads/2016/06/Banana-Smoothie-Recipe-4-1200.jpg" alt="Card image cap">
-          </div>
-  <div class="card-body text-center">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">How To</a>
-  </div>
-</div>
-       </div>
-   </div>
+       
    
    <nav aria-label="...">
   <ul class="pagination justify-content-end">
@@ -168,43 +108,6 @@
 
 <br>
 
-<div class="container-fluid">
-<div class="row recipe-header">
-        <div class="col-sm-9">
-        {% for recipe in recipes %}
-        <h5>Category</h5>
-        {{recipe.category_name}}
-        </div>
-        <div class="row">
-       <div class="col col-sm-4">
-        <h5>Title</h5>
-        {{recipe.recipe_name}}
-        </div>
-        </div>
-        <img src="{{ recipe.recipe_image }}" alt="{{ recipe.title}}">
-        {{recipe.Serves}}
-        {{recipe.Prep_Time}}
-        {{recipe.Cook_Time}}
-        {{recipe.recipe_description}}
-        {{recipe.Author}}
-        {{recipe.Ingredients}}
-        {{recipe.Instructions}}
-        
-        </div>
-<div class="recipe-header col-sm-9">
- 
-  
-  <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
-  <form action="/delete_recipe/{{recipe._id}}" method="POST" class="col-s12">
-  <button class="btn btn-info btn-small" type="submit">Delete</button>
-  </form>
-</div>
-<div class="col-s9">
-  
-</div>
-        {% endfor %}
-        
-  
 
 
 

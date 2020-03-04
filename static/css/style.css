@@ -73,16 +73,6 @@ width: 350px;
     left: 50%;
     transform: translatex(-50%);
 }
-.navbar-nav.navbar-center2 {
-    position: absolute;
-    left: 25%;
-    transform: translatex(-50%);
-}
-
-.logout {
-  margin-top: 3px;
-  padding: 5px;
-}
 
 .user-greeting {
   margin-top: 94px;

@@ -29,19 +29,24 @@
           <div class="input-group-text" id="btnGroupAddon2"><i class="fa fa-search"></i></div>
       </div>
   </div>
+  </div>
+  
       {% if user is defined %}
+      {% block navbar %}
+
+{% endblock %}
+        
+        <ul class="navbar-nav navbar-center">
+               <a class="nav-link" href="{{ url_for('add_recipe', recipe_id = recipe_id) }}">Add a Recipe</a>
+               <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
       
-          <a class="dropdown-item" href="{{url_for('add_recipe', recipe_id = recipe_id)}}">Add a Recipe</a>
-          
-          <br>
-          <li><a class="navbar-nav navbar-left logout" href="{{ url_for('logout') }}">Log Out</a></li>
-        </div>
-        </div>
-      </ul>
+    
+      
         {% else %}
-      <a class="nav-item nav-link"  data-toggle="modal" data-target="#login" href="{{url_for('get_recipes')}}">Login</a>
+        
+      <a class="nav-item nav-link" data-toggle="modal" data-target="#login" href="{{url_for('get_recipes')}}">Login</a>
       {% endif %}
-      
+      </ul>
     </div>
   </div>
 </nav>

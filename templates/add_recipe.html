@@ -1,85 +1,140 @@
 {% extends 'base.html' %} {% block content %}
 
-<h3 class="text-center">Add recipe</h3>
-<div class="row">
-<form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-12">
-  <div class="col-md-3 text-center">
-  <div class="form-row">
-    <div class="col-md-12">
-      <h5 class="text-center">Categories</h5>
-      <label class="form-row align-items-center" for="inlineFormCustomSelect">Category</label>
-      <select id="category" name="category_name" class="custom-select mr-sm-2">
-        <option value="" disable selected>Choose category</option>
-        {% for cat in categories %}
-          <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-        {% endfor %}
-      </select>
-      </div>
+<div class="container h-100">
+ <div class="row d-flex h-100">
+    <div class="align-self-start mr-auto">
+ <a class="btn btn-primary" href="{{url_for('get_recipes')}}">Back</a>
     </div>
-    <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput">Recipe name</label>
-    <input type="text" class="form-control" id="recipe_name" name="recipe_name" placeholder="Recipe name">
   </div>
-  </div>
-  <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput">Recipe Image</label>
-   <div class="imgurl">
-    <input id="img_src" name="recipe_image" type="text" minlength="15" placeholder="Recipe Photo URL" pattern="https?://.+" autocomplete="off">
-  </div>
-  </div>
-    <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Serves</label>
-    <input type="text" class="form-control" id="Serves" name="Serves" placeholder="Please add">
-  </div>
-  </div>
-  <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Prep Time</label>
-    <input type="text" class="form-control" id="Prep_Time" name="Prep_Time" placeholder="Please add">
-  </div>
-  </div>
-  <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Cook Time</label>
-    <input type="text" class="form-control" id="Cook_Time" name="Cook_Time" placeholder="Please add">
-  </div>
-  </div>
-  <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Recipe Description</label>
-    <textarea class="form-control" id="recipe_description" name="recipe_description" rows="5"></textarea>
-  </div>
-  </div>
-  <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Author</label>
-    <input type="text" class="form-control" id="Author" name="Author" placeholder="Please add">
-  </div>
-  </div>
-  <div class="row">
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Ingredients</label>
-    <input type="text" class="form-control" id="Ingredients" name="Ingredients" placeholder="Please add">
-  </div>
-  </div>
-  <div class="row">
-  <div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Instructions</span>
-  </div>
-  <textarea class="form-control" aria-label="Instructions" name="Instructions"></textarea>
 </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6">
-    <button type="submit" class="btn btn-primary">Add Recipe</button>
-    </div>
-  </div>
-</form>
+
+<main class="container">
+    <h2 class="text-center">Add recipe</h2>
+
+    <div class="row">
+        <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-12">
+
+            <!--Category selection-->
+            <div class="row justify-content-md-center">
+                <div class="form-row text-center">
+                    <div class="col-md-12">
+
+                        <h5 class="text-center">Categories</h5>
+                        <select id="category" name="category_name" class="custom-select">
+                            <option value="" disable selected>Choose category</option>
+                            {% for cat in categories %}
+                            <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Recipe name field-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Recipe name</label>
+                        <input type="text" class="form-control" id="recipe_name" name="recipe_name" placeholder="Recipe name">
+                    </div>
+                </div>
+            </div>
+
+            <!--Image field-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Recipe Image</label>
+                        <div class="imgurl">
+                            <input id="img_src" name="recipe_image" type="text" minlength="15" placeholder="Recipe Photo URL" pattern="https?://.+" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Serves, Prep time and cook time fields-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Serves</label>
+                        <input type="text" class="form-control" id="Serves" name="Serves" placeholder="Please add">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Prep Time</label>
+                        <input type="text" class="form-control" id="Prep_Time" name="Prep_Time" placeholder="Please add">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Cook Time</label>
+                        <input type="text" class="form-control" id="Cook_Time" name="Cook_Time" placeholder="Please add">
+                    </div>
+                </div>
+            </div>
+
+            <!--Recipe description-->
+            <div class="container-fluid text-center">
+                <div class="row justify-content-md-center">
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Recipe description</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!--Author field-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Author</label>
+                        <input type="text" class="form-control" id="Author" name="Author" placeholder="Please add">
+                    </div>
+                </div>
+            </div>
+
+            <!--Ingredients container-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Ingredients</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="9"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!--Instructions container-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Instructions</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="9"></textarea>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <br>
+            <!--Submit button-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success">Add Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
 
 
 
@@ -90,10 +145,4 @@
 
 
 
-
-
-
-
-
-
-{% endblock %}
+        {% endblock %}

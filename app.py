@@ -120,6 +120,7 @@ def stats():
 def add_recipe():
     if 'user' in session:
         categories=mongo.db.categories.find()
+        flash('Recipe added')
         return render_template('add_recipe.html', categories = categories)
     else:
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
@@ -168,6 +169,14 @@ def delete_recipe(recipe_id):
         mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
         flash('Recipe deleted')
     return redirect(url_for('get_recipes'))
+    
+@app.route('/how_to/<recipe_id>')
+def how_to(recipe_id):
+        the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        all_categories = mongo.db.categories.find()
+        return render_template('how_to.html', recipe=the_recipe, categories=all_categories)
+    
+    
 
     
 if __name__ == '__main__':
