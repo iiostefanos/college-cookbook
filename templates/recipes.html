@@ -82,7 +82,6 @@
          </div>
   <div class="card-body text-center">
     <h5 class="card-title">{{ recipe.recipe_name }}</h5>
-    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
     <a href="{{url_for('how_to', recipe_id = recipe._id )}}" class="btn btn-primary">How To</a>
     {% endfor %}
   </div>
