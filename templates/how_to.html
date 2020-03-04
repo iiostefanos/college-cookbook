@@ -13,7 +13,17 @@
           <a class="dropdown-item" href="{{url_for('delete_recipe', recipe_id = recipe_id)}}">Delete Recipe</a></li>
 {% endblock %}
 {% block content %}
-          
+  
+ 
+  
+  <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
+  <form action="/delete_recipe/{{recipe._id}}" method="POST" class="col-s12">
+  <button class="btn btn-info btn-small" type="submit">Delete</button>
+  </form>
+</div>
+
+        <h1>Test</h1>
+        
 <div class="container-fluid">
     <div class="row recipe-header">
         <div class="col-sm-9">
@@ -26,6 +36,7 @@
                 <h5>Title</h5>
                 {{recipe.recipe_name}}
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -84,64 +95,9 @@
           </div>
        </div>
        
-       <div class="container-fluid">
-
-<div class="row recipe-header">
-        <div class="col-sm-9">
-        {% for recipe in recipes %}
-        <h5>Category</h5>
-        {{recipe.category_name}}
-        </div>
-        <div class="row">
-       <div class="col col-sm-4">
-        <h5>Title</h5>
-        {{recipe.recipe_name}}
-        </div>
-        </div>
-        <img src="{{ recipe.recipe_image }}" alt="{{ recipe.title}}">
-        {{recipe.Serves}}
-        {{recipe.Prep_Time}}
-        {{recipe.Cook_Time}}
-        {{recipe.recipe_description}}
-        {{recipe.Author}}
-        {{recipe.Ingredients}}
-        {{recipe.Instructions}}
         
-        </div>
-        <div class="container-fluid">
-<div class="row recipe-header">
-        <div class="col-sm-9">
-        {% for recipe in recipes %}
-        <h5>Category</h5>
-        {{recipe.category_name}}
-        </div>
-        <div class="row">
-       <div class="col col-sm-4">
-        <h5>Title</h5>
-        {{recipe.recipe_name}}
-        </div>
-        </div>
-        <img src="{{ recipe.recipe_image }}" alt="{{ recipe.title}}">
-        {{recipe.Serves}}
-        {{recipe.Prep_Time}}
-        {{recipe.Cook_Time}}
-        {{recipe.recipe_description}}
-        {{recipe.Author}}
-        {{recipe.Ingredients}}
-        {{recipe.Instructions}}
-        
-        </div>
-<div class="recipe-header col-sm-9">
- 
-  
-  <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="btn btn-warning btn-small" type="submit">Edit</a>
-  <form action="/delete_recipe/{{recipe._id}}" method="POST" class="col-s12">
-  <button class="btn btn-info btn-small" type="submit">Delete</button>
-  </form>
-</div>
 
-        {% endfor %}
+     {% endblock %}
         
   
 
-{% endblock %}
