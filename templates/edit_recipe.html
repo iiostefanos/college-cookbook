@@ -8,13 +8,17 @@
   </div>
 </div>
 
+<main class="container">
 <h3 class="text-center">Edit recipe</h3>
+
+
+
 
 <div class="row">
     <form action="/update_recipe/{{recipe._id}}" method="POST" class="col-md-12">
 
         <!--Category selection-->
-        <div class="row">
+        <div class="row justify-content-md-center">
             <div class="form-row align-items-center">
                 <div class="col-auto my-1">
 
@@ -33,7 +37,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!--Recipe name field-->
         <div class="container-fluid text-center mx-auto">
             <div class="row justify-content-md-center">
@@ -43,6 +47,18 @@
                 </div>
             </div>
         </div>
+        
+        <!--Author field-->
+        <div class="container-fluid text-center mx-auto">
+            <div class="row justify-content-md-center">
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Author</label>
+                    <input type="text" class="form-control" value="{{recipe.Author}}" id="Author" name="Author" placeholder="Please add your name">
+                </div>
+            </div>
+        </div>
+
+        
 
         <!--Image field-->
         <div class="container-fluid text-center mx-auto">
@@ -59,16 +75,18 @@
 
         <!-- Serves, Prep time and cook time fields-->
         <div class="container-fluid text-center mx-auto">
-            <div class="row  justify-content-md-center">
+            <div class="row justify-content-md-center">
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Serves</label>
+                    <div>
                     <input type="text" class="form-control" value="{{recipe.Serves}}" id="Serves" name="Serves" placeholder="Please add">
                 </div>
             </div>
         </div>
+        </div>
 
         <div class="container-fluid text-center mx-auto">
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Prep Time</label>
                     <input type="text" class="form-control" value="{{recipe.Prep_Time}}" id="Prep_Time" name="Prep_Time" placeholder="Please add">
@@ -77,7 +95,7 @@
         </div>
 
         <div class="container-fluid text-center mx-auto">
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Cook Time</label>
                     <input type="text" class="form-control" value="{{recipe.Cook_Time}}" id="Cook_Time" name="Cook_Time" placeholder="Please add">
@@ -85,45 +103,40 @@
             </div>
         </div>
 
-        <!--Recipe description-->
-        <div class="container-fluid text-center mx-auto">
-            <div class="row justify-content-md-center">
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Recipe Description</label>
-                    <textarea class="form-control" id="recipe_description" name="recipe_description" rows="3">{{recipe.recipe_description}}</textarea>
+        
+         <!--Recipe description container-->
+            <div class="container-fluid text-center mx-auto">
+                <div class="row">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Description</span>
+                        </div>
+                        <textarea class="form-control" aria-label="Recipe description" name="recipe_description" rows="3" cols="30">{{recipe.recipe_description}}</textarea>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!--Author field-->
-        <div class="container-fluid text-center mx-auto">
-            <div class="row justify-content-md-center">
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Author</label>
-                    <input type="text" class="form-control" value="{{recipe.Author}}" id="Author" name="Author" placeholder="Please add your name">
-                </div>
-            </div>
-        </div>
-
-
+        
         <!--Ingredients container-->
         <div class="container-fluid text-center mx-auto">
-            <div class="row justify-content-md-center">
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Ingredients</label>
-                    <input type="text" class="form-control" value="{{recipe.Ingredients}}" id="Ingredients" name="Ingredients" placeholder="Please add">
+            <div class="row justify-content-md-center mt-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Ingredients</span>
+                    </div>
+                    <textarea class="form-control" aria-label="Ingredients" name="Ingredients" rows="7" cols="30">{{recipe.Ingredients}}</textarea>
                 </div>
             </div>
         </div>
+
 
         <!--Instructions container-->
         <div class="container-fluid text-center mx-auto">
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center mt-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Instructions</span>
                     </div>
-                    <textarea class="form-control" aria-label="Instructions" name="Instructions">{{recipe.Instructions}}</textarea>
+                    <textarea class="form-control" aria-label="Instructions" name="Instructions" rows="7" cols="30">{{recipe.Instructions}}</textarea>
                 </div>
             </div>
         </div>
@@ -131,14 +144,14 @@
 
         <!--Submit button-->
         <div class="container-fluid text-center mx-auto">
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center mt-4 mb-2">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary">Edit Recipe</button>
+                    <button type="submit" class="btn btn-warning">Edit Recipe</button>
                 </div>
             </div>
         </div>
     </form>
 
-
+</main>
 
     {% endblock %}

@@ -131,7 +131,7 @@ def insert_recipe():
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipes'))
     
-@app.route('/edit_recipe', methods=['POST'])
+@app.route('/edit_recipe/<recipe_id>', methods=['POST'])
 def edit_recipe(recipe_id):
     if 'user' in session:
         the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
