@@ -172,13 +172,12 @@ def delete_recipe(recipe_id):
     
 @app.route('/how_to/<recipe_id>')
 def how_to(recipe_id):
+   
         the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         all_categories = mongo.db.categories.find()
         return render_template('how_to.html', recipe=the_recipe, categories=all_categories)
-    
-    
+  
 
-    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

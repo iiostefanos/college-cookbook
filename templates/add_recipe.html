@@ -1,4 +1,13 @@
 {% extends 'base.html' %} {% block content %}
+
+<div class="container h-100">
+ <div class="row d-flex h-100">
+    <div class="align-self-start mr-auto">
+ <a class="btn btn-primary" href="{{url_for('get_recipes')}}">Back</a>
+    </div>
+  </div>
+</div>
+
 <main class="container">
     <h3 class="text-center">Add recipe</h3>
 
@@ -8,7 +17,7 @@
             <!--Category selection-->
             <div class="row justify-content-md-center">
                 <div class="form-row text-center">
-                    <div class="col-md-9">
+                    <div class="col-md-11">
 
                         <h5 class="text-center">Categories</h5>
                         <select id="category" name="category_name" class="custom-select">
@@ -81,6 +90,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             <!--Author field-->
             <div class="container-fluid text-center mx-auto">

@@ -35,8 +35,8 @@
     {% else %}
     <div class="row col-md-6">
       <div class="text-center invite">
-        <h6>You are more than welcome to check our recipes and prepare them.</h6> 
-        <h6>Feel free to search through the recipes from 6 different categories</h6>
+        <p>You are more than welcome to check our recipes and prepare them.</p> 
+        <p>Feel free to search through the recipes from 6 different categories</p>
         <h5>Would you like to share a recipe with all of us ?!?</h5>
       <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete your recipe.</p>
       <p>Already have an account ? --> <a data-toggle="modal" data-target="#login" href="#">Login</a></p>
@@ -76,9 +76,9 @@
        {% for recipe in recipes %}
       
 
-       <div class="card shadow" style="width: 20rem;">
+       <div class="card shadow card-style">
          <div class="inner">
-  <img class="card-img-top" src="{{ recipe.recipe_image }}" alt="Card image cap">
+  <img class="card-img-top img-fluid" src="{{ recipe.recipe_image }}" alt="Card image cap">
          </div>
   <div class="card-body text-center">
     <h5 class="card-title">{{ recipe.recipe_name }}</h5>
@@ -88,6 +88,8 @@
 </div>
        </div>
        
+       
+
    
    <nav aria-label="...">
   <ul class="pagination justify-content-end">

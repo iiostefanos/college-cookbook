@@ -40,7 +40,7 @@ width: 350px;
 }
 
 .invite{
-  padding-top: 24px;
+  padding-top: 14px;
 }
 
 .charts img {
@@ -70,11 +70,25 @@ width: 350px;
 
 .navbar-nav.navbar-center {
     position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
+    left:25%;
+    transform: translatex(-25%);
 }
 
 .user-greeting {
   margin-top: 94px;
 }
 
+
+h6 {
+  color:#007bff;
+  font-weight: bold;
+}
+
+.recipe-image {
+  width:350px;
+  height: 350px;
+}
+
+.card-shadow {
+  width: 20rem;
+}
