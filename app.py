@@ -34,7 +34,7 @@ def pagination():
     page, per_page = get_page_args(page_parameter='page', 
                      per_page_parameter='per_page')
     recipes=mongo.db.recipes.find().count()
-    recipes = get_recipes(page=page, per_page=2)
+    recipes = recipes(page=page, per_page=2)
     pagination = Pagination(page=page, per_page=per_page, recipes=recipes,
                             css_framework='bootstrap4')
     return render_template('recipes.html',
