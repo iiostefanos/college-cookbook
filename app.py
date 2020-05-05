@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
+from flask_paginate import Pagination, get_page_args
 from flask_pymongo import PyMongo, pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId 
@@ -100,33 +101,23 @@ def logout():
 	flash('You were logged out!')
 	return redirect(url_for('get_recipes'))
 
-@app.route('/', defaults = {'page_no': 0})
-@app.route('/get_recipes/<page_no>', defaults = {'page_no': 0} )
-def get_recipes(page_no):
-	pagination_object = None
-	recipe = mongo.db.recipes
-	offset = page_no
-	limit = 2
-	starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
-	last_id = starting_id[offset]['_id']
-	recipe = recipe.find({'_id' : {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
-	output = []
-	for i in recipe:
-		print(i)
-		output.append(i)
-	next_url = '/recipe?limit=' + str(limit) + '&offset=' + str(offset + limit)
-	prev_url = '/recipe?limit=' + str(limit) + '&offset=' + str(offset - limit)
-	pagination_object = ({'result' : output, 'prev_url' : prev_url, 'next_url': next_url})
-	if 'user' in session:
-		return render_template("recipes.html", 
-							   pagination_object=pagination_object,
-							   recipes=mongo.db.recipes.find(),
-							   user = session['user'])
-	else:	
-		return render_template("recipes.html",
-							   pagination_object=pagination_object,
-							   recipes=mongo.db.recipes.find())   
-      
+def get_recipes(offset=0, per_page=3):
+	recipes = mongo.db.recipes.find()
+	print ("herl")
+	return recipes[offset:offset + per_page]
+	
+@app.route('get_recipes')
+def showRecipes():
+	page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+	total = mongo.db.recipes.find().count()
+	paginatedRecipes = get_recipes(offset=offset, per_page=per_page)
+	pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+	
+	return render_template('recipes.html', recipes=paginatedRecipes, page=page, per_page=per_page, pagination=pagination)
+
+
+	
+
     
     
 @app.route('/stats')
