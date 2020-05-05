@@ -106,7 +106,7 @@ def get_recipes(page_no):
 	pagination_object = None
 	recipe = mongo.db.recipes
 	offset = page_no
-	limit = 2
+	limit = 1
 	starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
 	last_id = starting_id[offset]['_id']
 	recipe = recipe.find({'_id' : {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
@@ -193,6 +193,13 @@ def how_to(recipe_id):
         the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         all_categories = mongo.db.categories.find()
         return render_template('how_to.html', recipe=the_recipe, categories=all_categories)
+        
+        
+@app.route('/search')
+def search():
+    query = request.args.get("q")
+    
+    print(query)
   
 
 if __name__ == '__main__':
