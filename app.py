@@ -100,13 +100,13 @@ def logout():
 	flash('You were logged out!')
 	return redirect(url_for('get_recipes'))
 
-@app.route('/', defaults = {'page_no': 1})
-@app.route('/get_recipes/<page_no>', defaults = {'page_no': 1} )
+@app.route('/', defaults = {'page_no': 0})
+@app.route('/get_recipes/<page_no>', defaults = {'page_no': 0} )
 def get_recipes(page_no):
 	pagination_object = None
 	recipe = mongo.db.recipes
 	offset = page_no
-	limit = 6
+	limit = 2
 	starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
 	last_id = starting_id[offset]['_id']
 	recipe = recipe.find({'_id' : {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
@@ -116,7 +116,7 @@ def get_recipes(page_no):
 		output.append(i)
 	next_url = '/recipe?limit=' + str(limit) + '&offset=' + str(offset + limit)
 	prev_url = '/recipe?limit=' + str(limit) + '&offset=' + str(offset - limit)
-	pagination_object = jsonify({'result' : output, 'prev_url' : prev_url, 'next_url': next_url})
+	pagination_object = ({'result' : output, 'prev_url' : prev_url, 'next_url': next_url})
 	if 'user' in session:
 		return render_template("recipes.html", 
 							   pagination_object=pagination_object,
