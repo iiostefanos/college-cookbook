@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 from flask_pymongo import PyMongo, pymongo
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId 
 from os import path
@@ -134,6 +135,7 @@ def stats():
 
 
 @app.route('/add_recipe')
+@login_required
 def add_recipe():
     if 'user' in session:
         categories=mongo.db.categories.find()
@@ -143,12 +145,14 @@ def add_recipe():
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
 @app.route ('/insert_recipe', methods=['POST'])
+@login_required
 def insert_recipe():
     recipes=mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipes'))
     
 @app.route('/edit_recipe/<recipe_id>', methods=['POST'])
+@login_required
 def edit_recipe(recipe_id):
     if 'user' in session:
         the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -158,6 +162,7 @@ def edit_recipe(recipe_id):
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
+@login_required
 def update_recipe(recipe_id):
     recipes=mongo.db.recipes
     recipes.update_one({'_id': ObjectId(recipe_id)}, 
@@ -181,6 +186,7 @@ def update_recipe(recipe_id):
 
       
 @app.route('/delete_recipe/<recipe_id>', methods=['POST'])
+@login_required
 def delete_recipe(recipe_id):
     if 'user' in session:
         mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
