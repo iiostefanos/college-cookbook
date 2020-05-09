@@ -1,8 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 from flask_pymongo import PyMongo, pymongo
-from flask_paginate import Pagination, get_page_parameter, get_page_args
-from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId 
 from os import path
@@ -102,23 +100,16 @@ def logout():
 	flash('You were logged out!')
 	return redirect(url_for('get_recipes'))
 
-@app.route('/', defaults = {'page_no': 0})
-def get_recipes(offset=0, per_page=3):
-	recipes = mongo.db.recipes.find()
-	print("herl")
-	return recipes[offset: offset + per_page]
-	
+
+@app.route('/')
 @app.route('/get_recipes')
-def show_recipes():
-	
-	page, per_page, offset = get_page_args(page_parameter='page',
-	per_page_parameter='per_page')
-	per_page = 1
-	total = mongo.db.recipes.find().count()
-	paginatedRecipes = get_recipes(offset=offset, per_page=per_page)
-	pagination = Pagination(page=page, per_page=per_page, total=total,
-	css_framework='bootstrap4')
-	return render_template('recipes.html', recipes=paginatedRecipes, page=page, per_page=per_page, pagination=pagination) 
+def get_recipes():
+    if 'user' in session:
+      return render_template("recipes.html", recipes=mongo.db.recipes.find(), user = session['user'])
+    else:
+      return render_template("recipes.html", recipes=mongo.db.recipes.find())
+
+ 
     
 @app.route('/stats')
 def stats():
@@ -127,34 +118,31 @@ def stats():
 
 
 @app.route('/add_recipe')
-@login_required
 def add_recipe():
     if 'user' in session:
         categories=mongo.db.categories.find()
-        flash('Recipe added')
+        flash('Recipe added successfully')
         return render_template('add_recipe.html', categories = categories)
     else:
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
 @app.route ('/insert_recipe', methods=['POST'])
-@login_required
 def insert_recipe():
     recipes=mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipes'))
     
 @app.route('/edit_recipe/<recipe_id>', methods=['POST'])
-@login_required
 def edit_recipe(recipe_id):
     if 'user' in session:
         the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         all_categories = mongo.db.categories.find()
+        flash('Recipe edited')
         return render_template('edit_recipe.html', recipe=the_recipe, categories=all_categories)
-    else:
+    else: 
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
-@login_required
 def update_recipe(recipe_id):
     recipes=mongo.db.recipes
     recipes.update_one({'_id': ObjectId(recipe_id)}, 
@@ -178,7 +166,6 @@ def update_recipe(recipe_id):
 
       
 @app.route('/delete_recipe/<recipe_id>', methods=['POST'])
-@login_required
 def delete_recipe(recipe_id):
     if 'user' in session:
         mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
@@ -191,13 +178,6 @@ def how_to(recipe_id):
         the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         all_categories = mongo.db.categories.find()
         return render_template('how_to.html', recipe=the_recipe, categories=all_categories)
-        
-        
-@app.route('/search')
-def search():
-    query = request.args.get("q")
-    
-    print(query)
   
 
 if __name__ == '__main__':

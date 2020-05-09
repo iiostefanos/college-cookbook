@@ -37,9 +37,9 @@
     <div class="row col-md-6">
       <div class="text-center invite">
         <p>You are more than welcome to check our recipes and prepare them.</p> 
-        <p>Feel free to search through the recipes from 6 different categories</p>
+        <p>Feel free to check through the recipes from 6 different categories</p>
         <h5>Would you like to share a recipe with all of us ?!?</h5>
-      <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete your recipe.</p>
+      <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete a recipe.</p>
       <p>Already have an account ? --> <a data-toggle="modal" data-target="#login" href="#">Login</a></p>
       <p>If not, click the button below</p>
        <!-- Button to open the modal -->
@@ -51,8 +51,7 @@
     
   </div>
 </div>
-{{ pagination.info }}
-{{ pagination.links }}
+
 <br>
 
 
@@ -60,9 +59,11 @@
 <div class="container">
 
    <div class="row justify-content-center">
+     
+     {% for recipe in recipes %}
      <div class="col-md-4">
        
-       {% for recipe in recipes %}
+       
       
 
        <div class="card shadow card-style">
@@ -72,17 +73,17 @@
   <div class="card-body text-center">
     <h5 class="card-title">{{ recipe.recipe_name }}</h5>
     <a href="{{url_for('how_to', recipe_id = recipe._id )}}" class="btn btn-primary">How To</a>
-    {% endfor %}
+    
   </div>
 </div>
        </div>
+       {% endfor %}
        </div>
        </div>
        
        
        
-{{ pagination.info }}
-{{ pagination.links }}
+
    
    
 <br>
