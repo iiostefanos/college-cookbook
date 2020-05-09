@@ -26,12 +26,11 @@ body {
 .videoframe {
   width:560px;
   height:315px;
-  padding-right: 34px;
+  padding-right: 36px;
 }
 
 .card {
-  padding-right: 3px;
-  margin: 0 5px;
+  margin: 0 0 8px 4px;
 }
 
 .card-img-top {
@@ -93,18 +92,6 @@ h6 {
   width: 20rem;
 }
 
-.pagination-page-info {
-    padding: .6em;
-    padding-left: 0;
-    width: 40em;
-    margin: .5em;
-    margin-left: 0;
-    font-size: 12px;
-}
-.pagination-page-info b {
-    color: black;
-    background: #6aa6ed;
-    padding-left: 2px;
-    padding: .1em .25em;
-    font-size: 150%;
+.back {
+  text-align: center;
 }
