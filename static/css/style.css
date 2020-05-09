@@ -92,6 +92,8 @@ h6 {
   width: 20rem;
 }
 
-.back {
-  text-align: center;
+.card-body h6 {
+  font-size: 16px;
+  color:#000000;
 }
+

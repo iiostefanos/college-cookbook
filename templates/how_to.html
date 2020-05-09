@@ -1,127 +1,136 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block navbar %}
 <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-center">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Manage
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<a class="dropdown-item" href="{{url_for('edit_recipe', recipe_id = recipe._id)}}">Edit Recipe</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{url_for('delete_recipe', recipe_id = recipe_id)}}">Delete Recipe</a></li>
-{% endblock %}
-{% block content %}
-  
- <div class="container h-100">
- <div class="row d-flex h-100">
-    <div class="align-self-start mr-auto">
- <a class="btn btn-primary" href="{{url_for('get_recipes')}}">Back</a>
-    </div>
-  </div>
-</div>
- 
- 
- <div class="container h-100">
- <div class="row d-flex h-100">
-    <div class="align-self-start mr-auto"> 
-  <form action= "{{url_for('edit_recipe', recipe_id = recipe._id)}}", method="POST">
-  <button class="btn btn-warning" type="submit">Edit</button>
-  </form>
-  </div>
-</div>
-</div>
-<div class="container h-100">
- <div class="row d-flex h-100">
-    <div class="align-self-start mr-auto">
-  <form action="/delete_recipe/{{recipe._id}}" method="POST">
-  <button class="btn btn-danger" type="submit">Delete</button>
-  </form>
-</div>
-  </div>
-</div>
+    <ul class="nav navbar-nav navbar-center">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Manage
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{url_for('edit_recipe', recipe_id = recipe._id)}}">Edit Recipe</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url_for('delete_recipe', recipe_id = recipe_id)}}">Delete Recipe</a>
+        </li>
+        {% endblock %}
+        {% block content %}
 
-  
-<div class="row">
-    <div class="col-sm-6">
-        <img class="recipe-image img-fluid rounded float-right" src="{{ recipe.recipe_image }}" alt="{{ recipe_image }}">
-    </div>
-    <div class="col-sm-6 text-center">
-    
-            <h5>Recipe Name</h5>
-            <h6>{{recipe.recipe_name}}</h6>
-            
-            <h5>Category</h5>
-            <h6>{{recipe.category_name}}</h6>
-            
-            <h5> Author</h5>
-            <h6> {{recipe.Author}}</h6>
-            
-            <h5>Serves</h5>
-            <h6> {{recipe.Serves}} </h6>
-            
-            <h5>Preparation Time</h5>
-            <h6>{{recipe.Prep_Time}}</h6>
-            
-            <h5>Cook Time</h5>
-            <h6>{{recipe.Cook_Time}}</h6>
 
-    </div>
-</div>
-            
-  <br>  
-    
-<div class="container-fluid">
-       <form class="form-horizontal">
-       <div class="form-group ">
-           <div class="row">
-          <label class=" mt-2 col-sm-2 control-label text-center">
-             Description 
-          </label> 
-          <div class="col-sm-9">
-              <textarea class="form-control" name="description" rows="2" cols="50">{{recipe.recipe_description}}</textarea>
-          </div>
-       </div>
-       </div>
-      </form>
-       </div>
-       
-<div class="container-fluid">
-       <form class="form-horizontal">
-       <div class="form-group ">
-           <div class="row">
-          <label class="col-sm-2 control-label text-center">
-             Ingredients 
-          </label> 
-          <div class="col-sm-9">
-              <textarea class="form-control" name="description" rows="10" cols="40">{{recipe.Ingredients}}</textarea>
-          </div>
-       </div>
-       </div>
-      </form>
-       </div>
-      
-      <div class="container-fluid">
-       <form class="form-horizontal">
-       <div class="form-group ">
-           <div class="row">
-          <label class="col-sm-2 control-label text-center">
-             Instructions
-          </label> 
-          <div class="col-sm-9">
-              <textarea class="form-control" name="description" rows="10" cols="40">{{recipe.Instructions}}</textarea>
-          </div>
-       </div>
-       </div>
-      </form>
-       </div>
-      
-        
-       
-        
+        <!-- Back Button -->
+        <div class="container h-100">
+            <div class="row d-flex h-100">
+                <div class="align-self-start mr-auto">
+                    <a class="btn btn-primary" href="{{url_for('get_recipes')}}">Back</a>
+                </div>
+            </div>
+        </div>
 
-     {% endblock %}
-        
-  
+        <!-- Edit Button -->
+        <div class="container h-100">
+            <div class="row d-flex h-100">
+                <div class="align-self-start mr-auto">
+                    <form action="{{url_for('edit_recipe', recipe_id = recipe._id)}}" , method="POST">
+                        <button class="btn btn-warning" type="submit">Edit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
+        <!-- Delete Button -->
+        <div class="container h-100">
+            <div class="row d-flex h-100">
+                <div class="align-self-start mr-auto">
+                    <form action="/delete_recipe/{{recipe._id}}" method="POST">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Image  -->
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="recipe-image img-fluid rounded float-right" src="{{ recipe.recipe_image }}" alt="{{ recipe_image }}">
+            </div>
+
+
+            <!-- Recipe Details section  -->
+            <div class="col-sm-6 text-center">
+
+                <h5>Recipe Name</h5>
+                <h6>{{recipe.recipe_name}}</h6>
+
+                <h5>Category</h5>
+                <h6>{{recipe.category_name}}</h6>
+
+                <h5> Author</h5>
+                <h6> {{recipe.Author}}</h6>
+
+                <h5>Serves</h5>
+                <h6> {{recipe.Serves}} </h6>
+
+                <h5>Preparation Time</h5>
+                <h6>{{recipe.Prep_Time}}</h6>
+
+                <h5>Cook Time</h5>
+                <h6>{{recipe.Cook_Time}}</h6>
+
+            </div>
+        </div>
+
+        <br>
+        <!-- Recipe Description  -->
+        <div class="container-fluid">
+            <form class="form-horizontal">
+                <div class="form-group ">
+                    <div class="row">
+                        <label class=" mt-2 col-sm-2 control-label text-center">
+                            Description
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="description" rows="2" cols="50">{{recipe.recipe_description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Recipe Ingredients  -->
+        <div class="container-fluid">
+            <form class="form-horizontal">
+                <div class="form-group ">
+                    <div class="row">
+                        <label class="col-sm-2 control-label text-center">
+                            Ingredients
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="description" rows="10" cols="40">{{recipe.Ingredients}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Recipe Instruction  -->
+        <div class="container-fluid">
+            <form class="form-horizontal">
+                <div class="form-group ">
+                    <div class="row">
+                        <label class="col-sm-2 control-label text-center">
+                            Instructions
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="description" rows="10" cols="40">{{recipe.Instructions}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+        {% endblock %}

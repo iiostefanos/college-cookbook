@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
+
+<!-- Back Button -->
 <div class="container h-100">
  <div class="row d-flex h-100">
     <div class="align-self-start mr-auto">
@@ -16,7 +18,7 @@
     <div class="row">
         <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-12">
 
-            <!--Category selection-->
+<!--Category selection-->
             <div class="row justify-content-md-center">
                 <div class="form-row text-center mt-2">
                     <div class="col-md-12">
@@ -42,7 +44,7 @@
                 </div>
             </div>
             
-             <!--Author field-->
+ <!--Author field-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row justify-content-md-center mt-2">
                     <div class="form-group">
@@ -52,7 +54,7 @@
                 </div>
             </div>
 
-            <!--Image field-->
+<!--Image field-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row justify-content-md-center">
                     <div class="form-group">
@@ -64,7 +66,7 @@
                 </div>
             </div>
 
-            <!-- Serves, Prep time and cook time fields-->
+<!-- Serves, Prep time and cook time fields-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row justify-content-md-center">
                     <div class="form-group">
@@ -94,20 +96,20 @@
 
 
 
-            <!--Recipe description container-->
+<!--Recipe description container-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Description</span>
                         </div>
-                        <textarea class="form-control" aria-label="Recipe description" name="recipe_description" rows="3" cols="30" required></textarea>
+                        <textarea class="form-control" aria-label="Recipe description" name="recipe_description" rows="5" cols="30" required></textarea>
                     </div>
                 </div>
             </div>
 
             
-            <!--Ingredients container-->
+<!--Ingredients container-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row mt-4">
                     <div class="input-group">
@@ -121,7 +123,7 @@
             
             
 
-            <!--Instructions container-->
+<!--Instructions container-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row mt-4">
                     <div class="input-group">
@@ -134,7 +136,7 @@
             </div>
 
             <br>
-            <!--Submit button-->
+<!--Submit button-->
             <div class="container-fluid text-center mx-auto">
                 <div class="row justify-content-md-center mb-3">
                     <div class="col-md-6">

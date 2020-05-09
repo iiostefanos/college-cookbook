@@ -1,92 +1,97 @@
 {% extends 'base.html' %} {% block content %}
 
 
-
+<!--Welcome message for visitor or registered user-->
 <main class="container">
-  <br>
-  <h1 class="text-center"> Welcome to College Cookbook app {% if user is defined %}, {{ user.capitalize() }} {% endif %} !!! </h1>
-  
-  {% with messages = get_flashed_messages() %}
+    <br>
+    <h1 class="text-center"> Welcome to College Cookbook app {% if user is defined %}, {{ user.capitalize() }} {% endif %} !!! </h1>
+
+    {% with messages = get_flashed_messages() %}
     {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-  <strong>{{ message }}</strong> 
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<!--Video section-->
+    <div class="container">
+        <div class="row">
+            <div class="embed-responsive embed-responsive-16by9 col-md-6">
+
+                <iframe class="embed-responsive-item videoframe" src="https://www.youtube.com/embed/JjHHWbmtqfM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            {% if user is defined %}
             
-      {% endfor %}
-  {% endif %}
-  {% endwith %}
+<!--Greeting and invite message for visitor or registered user-->
+            <div class="row col-md-6">
+                <div class="user-greeting text-center">
+                    <h3>{{user}}, you are now logged in</h3>
+                    <h4>Feel free to add, edit or delete a recipe</h4>
+                </div>
+            </div>
+            {% else %}
+            <div class="row col-md-6">
+                <div class="text-center invite">
+                    <p>You are more than welcome to check our recipes and prepare them.</p>
+                    <p>Feel free to check through the recipes from 6 different categories</p>
+                    <h5>Would you like to share a recipe with all of us ?!?</h5>
+                    <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete a recipe.</p>
+                    <p>Already have an account ? --> <a data-toggle="modal" data-target="#login" href="#">Login</a></p>
+                    <p>If not, click the button below</p>
+                    <!-- Button to open the modal -->
+                    <a data-toggle="modal" data-target="#register" href=''><button type="button" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i>Signup</button></a>
+                    {% endif %}
 
-<div class="container">
-  <div class="row">
-    <div class="embed-responsive embed-responsive-16by9 col-md-6">
-  
-  <iframe class="embed-responsive-item videoframe" src="https://www.youtube.com/embed/JjHHWbmtqfM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
     </div>
-     {% if user is defined %}
-    <div class="row col-md-6">
-      <div class="user-greeting text-center">
-        <h3>{{user}}, you are now logged in</h3> 
-        <h4>Feel free to add, edit or delete a recipe</h4>
-      </div>
-    </div>
-    {% else %}
-    <div class="row col-md-6">
-      <div class="text-center invite">
-        <p>You are more than welcome to check our recipes and prepare them.</p> 
-        <p>Feel free to check through the recipes from 6 different categories</p>
-        <h5>Would you like to share a recipe with all of us ?!?</h5>
-      <p>Then all you have to do is register. Here, if you are logged in, you can add, edit or delete a recipe.</p>
-      <p>Already have an account ? --> <a data-toggle="modal" data-target="#login" href="#">Login</a></p>
-      <p>If not, click the button below</p>
-       <!-- Button to open the modal -->
-     <a data-toggle="modal" data-target="#register" href=''><button type="button" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i>Signup</button></a>
-     {% endif %}
-      
-      </div>
-    </div>
+
+    <br>
+
+
+    <br>
     
-  </div>
-</div>
+    <!-- Recipes card section with image, title and redirect button-->
+    <div class="container">
 
-<br>
+        <div class="row justify-content-center">
+
+            {% for recipe in recipes %}
+            <div class="col-md-4 col-sm-6">
 
 
-<br>
-<div class="container">
 
-   <div class="row justify-content-center">
-     
-     {% for recipe in recipes %}
-     <div class="col-md-4 col-sm-6">
-       
-       
-      
 
-       <div class="card shadow card-style">
-         <div class="inner">
-  <img class="card-img-top img-fluid" src="{{ recipe.recipe_image }}" alt="Card image cap">
-         </div>
-  <div class="card-body text-center">
-    <h5 class="card-title">{{ recipe.recipe_name }}</h5>
-    <a href="{{url_for('how_to', recipe_id = recipe._id )}}" class="btn btn-primary">How To</a>
-    
-  </div>
-</div>
-       </div>
-       {% endfor %}
-       </div>
-       </div>
-       
-       
-       
+                <div class="card shadow card-style">
+                    <div class="inner">
+                        <img class="card-img-top img-fluid" src="{{ recipe.recipe_image }}" alt="Card image cap">
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-title">{{ recipe.recipe_name }}</p>
+                        <a href="{{url_for('how_to', recipe_id = recipe._id )}}" class="btn btn-primary">How To</a>
 
-   
-   
-<br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+    <br>
 
 </main>
 

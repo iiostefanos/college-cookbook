@@ -10,6 +10,7 @@ if path.exists("env.py"):
 
 app = Flask(__name__)
 
+#config for db access
 app.config["MONGO_DBNAME"] = 'college_cookbook'
 app.config["MONGO_URI"] = os.environ["MONGO_URI"]
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -101,6 +102,10 @@ def logout():
 	return redirect(url_for('get_recipes'))
 
 
+"""
+Recipes page
+"""
+
 @app.route('/')
 @app.route('/get_recipes')
 def get_recipes():
@@ -109,14 +114,18 @@ def get_recipes():
     else:
       return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
- 
+"""
+Statistics page
+"""
     
 @app.route('/stats')
 def stats():
     return render_template("stats.html", 
     recipes=mongo.db.recipes.find())
 
-
+"""
+Add recipe
+"""
 @app.route('/add_recipe')
 def add_recipe():
     if 'user' in session:
@@ -125,13 +134,20 @@ def add_recipe():
         return render_template('add_recipe.html', categories = categories)
     else:
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
-    
+
+"""
+Insert recipe
+"""   
 @app.route ('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes=mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipes'))
     
+"""
+Edit recipe
+"""
+
 @app.route('/edit_recipe/<recipe_id>', methods=['POST'])
 def edit_recipe(recipe_id):
     if 'user' in session:
@@ -142,6 +158,10 @@ def edit_recipe(recipe_id):
     else: 
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
     
+"""
+Update recipe
+"""
+
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
     recipes=mongo.db.recipes
@@ -164,6 +184,10 @@ def update_recipe(recipe_id):
     return redirect(url_for('get_recipes'))
     
 
+
+"""
+Delete recipe
+"""
       
 @app.route('/delete_recipe/<recipe_id>', methods=['POST'])
 def delete_recipe(recipe_id):
@@ -172,6 +196,10 @@ def delete_recipe(recipe_id):
         flash('Recipe deleted')
     return redirect(url_for('get_recipes'))
     
+
+"""
+How to part
+"""
 @app.route('/how_to/<recipe_id>')
 def how_to(recipe_id):
    
@@ -193,6 +221,10 @@ def wrong_req(error):
     return render_template('500.html'), 500
 
 
+
+"""
+Run the application
+"""
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
